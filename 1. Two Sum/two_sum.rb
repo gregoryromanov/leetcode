@@ -15,3 +15,38 @@ def two_sum(nums, target)
 
   indeces
 end
+
+
+def two_sum(nums, target)
+  nums.each_with_index do |x, i|
+    nums.each_with_index do |y, j|
+      next if i == j
+
+      return [i, j] if target == x + y
+    end
+  end
+end
+
+def two_sum(nums, target)
+  hash = Hash.new
+  
+  nums.each_with_index &-> n, i { hash[n] = i }
+
+  nums.each_with_index do |n, i|
+    difference = target - n
+
+    return [i, hash[difference]] if hash.include?(difference) && i != hash[difference]
+  end
+end
+
+def two_sum(nums, target)
+  hash = Hash.new
+
+  nums.each_with_index do |n, i|
+    difference = target - n
+
+    return [i, hash[difference]] if hash.include? difference
+
+    hash[n] = i
+  end
+end
