@@ -48,7 +48,7 @@ def longest_palindrome(s)
   longest
 end
 
-def longest_palindrome2(s)
+def longest_palindrome(s)
   return '' if s.nil? || s.size < 1
 
   start = finish = 0
@@ -58,7 +58,7 @@ def longest_palindrome2(s)
     len2 = expand_from_center s, i, i + 1
     len = len1 > len2 ? len1 : len2
 
-    if len > finish - start + 1
+    if len > finish - start 
       start = i - (len - 1) / 2
       finish = i + len / 2
     end
