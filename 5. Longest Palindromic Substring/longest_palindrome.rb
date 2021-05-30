@@ -78,3 +78,29 @@ def expand_from_center(s, l, r)
 
   right - left - 1
 end
+
+
+def longest_palindrome(s)
+  s = '#' + s.split('').join('#') + '#'
+  p = [0] * s.size
+  center = right = max_i = 0
+
+  0.upto(s.size - 1) do |i|
+    p[i] = [right - i, p[center * 2 - i]].min if i < right
+    p[i] += 1 while s[i + 1 + p[i]] == s[i - 1 - p[i]]
+    
+    if i + p[i] > right
+      center = i
+      right = i + p[i]
+      max_i = center if p[center] > p[max_i]
+    end
+  end
+
+  s[max_i - p[max_i]..max_i + p[max_i]].gsub '#', ''
+end
+
+pp longest_palindrome 'bbbbbqwerty'
+
+# #b#b#b#b#b#q#w#e#r#t#y#
+# 00012343210000000000000 # using cache
+# 01234543210101010101010
