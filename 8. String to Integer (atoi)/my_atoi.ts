@@ -22,6 +22,17 @@ function myAtoi(s: string): number {
   return result;
 }
 
+
+function myAtoi2(s: string): number {
+  let result: number = parseInt(s);
+  
+  if (isNaN(result)) return 0;
+
+  if (result < Math.pow(-2, 31)) return Math.pow(-2, 31);
+  else if (result > Math.pow(2, 31) - 1) return Math.pow(2, 31) - 1;
+  return result;
+};
+
 console.log(myAtoi('21474836460'));
 console.log(myAtoi('+'));
 console.log(myAtoi('  +  42'));
